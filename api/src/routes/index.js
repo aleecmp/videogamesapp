@@ -52,11 +52,9 @@ const getDbInfo = async () => {
   });
 };
 
-getAllVideogames = async (req, res) => {
-  const apiInfo = await getApiInfo();
-  const dbInfo = await getDbInfo();
-  const infoTotal = [...apiInfo, ...dbInfo];
-  return infoTotal;
+getAllVideogames = async () => {
+  const [apiInfo, dbInfo] = await Promise.all([getApiInfo(), getDbInfo()]);
+  return [...apiInfo, ...dbInfo];
 };
 
 // GET all videogames and by name
@@ -71,7 +69,7 @@ router.get("/videogames", async (req, res) => {
       );
       infoName = infoName.data.results;
 
-      let detailInfo = infoName?.map((e) => {
+      let detailsByName = infoName?.map((e) => {
         return {
           image: e.background_image,
           name: e.name,
@@ -82,9 +80,9 @@ router.get("/videogames", async (req, res) => {
           released: e.released,
         };
       });
-      // console.log(detailInfo.length);
-      detailInfo.length
-        ? res.status(200).send(detailInfo.slice(0, 15))
+      // console.log(detailsByName.length);
+      detailsByName.length
+        ? res.status(200).send(detailsByName.slice(0, 15))
         : res.status(404).send("Video Game Not found");
     } catch (error) {
       console.log(error);
