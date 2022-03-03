@@ -72,6 +72,7 @@ const getVgamesApiByName = async (name) => {
 
     let detailsByName = infoName.map((e) => {
       return {
+        id: e.id,
         image: e.background_image,
         name: e.name,
         genres: e.genres.map((g) => g.name),
@@ -109,6 +110,7 @@ const getVgameById = async (id) => {
       );
       detailsApi = detailsApi.data;
       let detailsObj = {
+        id: detailsApi.id,
         image: detailsApi.background_image,
         name: detailsApi.name,
         genres: detailsApi.genres.map((e) => e.name),
