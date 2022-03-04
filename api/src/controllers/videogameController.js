@@ -165,8 +165,6 @@ const postVgameDb = async (vgameData) => {
 };
 
 module.exports = {
-  getApiInfo,
-  getDbInfo,
   getAllVgames,
   getVgamesApiByName,
   getVgameById,
