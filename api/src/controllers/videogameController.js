@@ -130,8 +130,16 @@ const getVgameById = async (id) => {
 
 const postVgameDb = async (vgameData) => {
   try {
-    let { name, description, released, rating, image, platforms, genres } =
-      vgameData;
+    let {
+      name,
+      description,
+      released,
+      rating,
+      image,
+      platforms,
+      genres,
+      createdInDb,
+    } = vgameData;
 
     let vgameCreated = await Videogame.create({
       name,
