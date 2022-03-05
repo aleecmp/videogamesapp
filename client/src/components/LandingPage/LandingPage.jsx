@@ -5,7 +5,7 @@ const LandingPage = () => {
   return (
     <div>
       <h1>Landing Page</h1>
-      <Link to="/videogames">
+      <Link to="/home">
         <button>Enter</button>
       </Link>
     </div>
