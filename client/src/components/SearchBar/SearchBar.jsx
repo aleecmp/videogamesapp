@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getNameVgame } from "../../redux/actions";
+import { getVgameByName } from "../../redux/actions";
+import Loading from "../Loading/Loading";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -14,26 +15,28 @@ const SearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getNameVgame(name));
+    dispatch(getVgameByName(name));
+    setName("");
   };
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Search..."
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      />
-      <button
-        type="submit"
-        onClick={(e) => {
+      <form
+        onSubmit={(e) => {
           handleSubmit(e);
         }}
       >
-        Search
-      </button>
+        <input
+          type="text"
+          name="name"
+          value={name}
+          placeholder="Search videogame"
+          onChange={(e) => {
+            handleInputChange(e);
+          }}
+        />
+        {name ? <button type="submit">Search</button> : <button>Search</button>}
+      </form>
     </div>
   );
 };
