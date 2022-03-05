@@ -24,7 +24,11 @@ const NavBar = () => {
       >
         Reset
       </button>
+
       <SearchBar />
+      <Link to="/create">
+        <button>Create Vgame</button>
+      </Link>
     </div>
   );
 };
