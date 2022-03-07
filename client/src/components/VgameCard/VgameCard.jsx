@@ -5,6 +5,7 @@ import styles from "./VgameCard.module.css";
 const VgameCard = (props) => {
   console.log(props.name);
   console.log(props.id);
+  console.log(props.rating);
 
   return (
     <div>
