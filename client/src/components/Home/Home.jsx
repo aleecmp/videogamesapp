@@ -7,6 +7,7 @@ import NavBar from "../NavBar/NavBar";
 import Paginated from "../Paginated/Paginated";
 import VgameCard from "../VgameCard/VgameCard";
 import Loading from "../Loading/Loading";
+import SideBar from "../SideBar/SideBar";
 
 import styles from "./Home.module.css";
 
@@ -29,8 +30,6 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getAllVgames());
-    setCurrentPage(1);
-    return () => dispatch(cleanVgames());
   }, [dispatch]);
 
   //   return () => dispatch(cleanVgames());
@@ -43,10 +42,13 @@ const Home = () => {
   return (
     <div>
       <NavBar />
+      <SideBar />
       <Paginated
         vgamesPerPage={vgamesPerPage}
         allVgames={allVgames.length}
         paginated={paginated}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
       />
       {currentVgames.length > 0 ? (
         <div className={styles.cards}>
@@ -57,10 +59,13 @@ const Home = () => {
       ) : (
         <Loading />
       )}
+
       <Paginated
         vgamesPerPage={vgamesPerPage}
         allVgames={allVgames.length}
         paginated={paginated}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
       />
     </div>
   );
