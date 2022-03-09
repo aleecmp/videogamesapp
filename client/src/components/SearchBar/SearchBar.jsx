@@ -42,32 +42,11 @@ const SearchBar = () => {
             onChange={handleInputChange}
             placeholder="Search for a Vgame"
           />
-          <button>Search</button>
+          {!name ? <button disabled>Create</button> : <button>Create</button>}
         </div>
       )}
     </form>
   );
 };
-
-//     <div>
-//       <form
-//         onSubmit={(e) => {
-//           handleSubmit(e);
-//         }}
-//       >
-//         <input
-//           type="text"
-//           name="name"
-//           value={name}
-//           placeholder="Search videogame"
-//           onChange={(e) => {
-//             handleInputChange(e);
-//           }}
-//         />
-//         {name ? <button type="submit">Search</button> : <button>Search</button>}
-//       </form>
-//     </div>
-//   );
-// };
 
 export default SearchBar;
