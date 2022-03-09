@@ -3,6 +3,20 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getGenres, postVgame } from "../../redux/actions";
 
+const validate = (input) => {
+  let errors = {};
+  if (!input.name.trim()) {
+    errors.name = "Name cannot be empty";
+  } else if (!input.description.trim()) {
+    errors.description = "Description cannot be empty";
+  } else if (input.platforms.length < 1) {
+    errors.platforms = "Platforms cannot be empty";
+  } else if (input.rating > 5 || input.rating < 0) {
+    errors.rating = "Rating must be between 0 and 5";
+  }
+  return errors;
+};
+
 const CreateVgame = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -28,6 +42,12 @@ const CreateVgame = () => {
       [e.target.name]: e.target.value,
     });
     console.log(input);
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
   const handleSelect = (e) => {
@@ -35,6 +55,7 @@ const CreateVgame = () => {
       ...input,
       genres: [...input.genres, e.target.value],
     });
+    console.log(input);
   };
 
   const handleSelectPlat = (e) => {
@@ -42,6 +63,12 @@ const CreateVgame = () => {
       ...input,
       platforms: [...input.platforms, e.target.value],
     });
+    setErrors(
+      validate({
+        ...input,
+        platforms: [...input.platforms, e.target.value],
+      })
+    );
   };
 
   const handleDeleteGenres = (e) => {
@@ -60,6 +87,12 @@ const CreateVgame = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
     dispatch(postVgame(input));
     alert("Vgame Created Successfully");
     history.push("/home");
@@ -85,6 +118,7 @@ const CreateVgame = () => {
           <button>Back</button>
         </Link>
         <h3>Create Vgame</h3>
+        <p>Fields with * are required</p>
       </nav>
       <div>
         <form
@@ -93,7 +127,7 @@ const CreateVgame = () => {
           }}
         >
           <div>
-            <label>Name: </label>
+            <label>Name:* </label>
             <input
               type="text"
               value={input.name}
@@ -103,9 +137,10 @@ const CreateVgame = () => {
                 handleChange(e);
               }}
             />
+            {errors.name && <p>{errors.name}</p>}
           </div>
           <div>
-            <label>Description: </label>
+            <label>Description:* </label>
             <input
               type="text"
               value={input.description}
@@ -115,14 +150,14 @@ const CreateVgame = () => {
                 handleChange(e);
               }}
             />
+            {errors.description && <p>{errors.description}</p>}
           </div>
           <div>
             <label>Released: </label>
             <input
-              type="text"
+              type="date"
               value={input.released}
               name="released"
-              placeholder="YYYY-MM-DD"
               onChange={(e) => {
                 handleChange(e);
               }}
@@ -131,10 +166,12 @@ const CreateVgame = () => {
           <div>
             <label>Rating: </label>
             <input
-              type="text"
+              type="number"
               value={input.rating}
               name="rating"
-              placeholder="Rating...1-10"
+              placeholder="0-5"
+              min={0}
+              max={5}
               onChange={(e) => {
                 handleChange(e);
               }}
@@ -171,13 +208,13 @@ const CreateVgame = () => {
             {errors.genres && <p>{errors.genres}</p>}
           </div>
           <div>
-            <label>Platforms: </label>
+            <label>Platforms:* </label>
             <select
               onChange={(e) => {
                 handleSelectPlat(e);
               }}
             >
-              <option> select </option>
+              <option>select</option>
               <option value="Android">Android</option>
               <option value="iOS">iOS</option>
               <option value="Linux">Linux</option>
@@ -195,7 +232,13 @@ const CreateVgame = () => {
             {errors.platforms && <p>{errors.platforms}</p>}
           </div>
           <div>
-            <button type="submit">Create Now!</button>
+            {errors.name ||
+            input.platforms.length === 0 ||
+            errors.description ? (
+              <button disabled>Create</button>
+            ) : (
+              <button>Create</button>
+            )}
           </div>
         </form>
         <div>
