@@ -58,7 +58,7 @@ const rootReducer = (state = initialState, action) => {
       const genres2 = allVgames2.filter(
         (c) =>
           c.genres?.find((c) => c === action.payload) ||
-          c.Genres?.find((c) => c.name === action.payload)
+          c.genres?.find((c) => c.name === action.payload)
       );
       const statusFiltered = action.payload === "All" ? allVgames2 : genres2;
       return {
