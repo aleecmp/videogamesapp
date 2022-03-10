@@ -9,50 +9,50 @@ const VgameDetails = (props) => {
 
   const { id } = props.match.params;
   const dispatch = useDispatch();
-  const vgame = useSelector((state) => state.details);
+  const detail = useSelector((state) => state.details);
 
   useEffect(() => {
     dispatch(getDetails(id));
     return () => dispatch(cleanDetails());
   }, [id, dispatch]);
-  console.log(vgame);
+  console.log(detail);
 
   return (
     <div>
       <Link to="/home">
         <button>Back</button>
       </Link>
-      {vgame.id ? (
+      {detail.id ? (
         <div>
           <div>
-            <img src={vgame.image} alt={vgame.name} />
+            <img src={detail.image} alt={detail.name} />
           </div>
           <div>
-            <h1>{vgame.name}</h1>
+            <h1>{detail.name}</h1>
           </div>
           <div>
-            <h5>Genres:</h5>
-            {vgame.genres?.map((e) => (
-              <h5 key={e}>{e}</h5>
-            ))}
+            <h5>Genres: </h5>
+            {detail.createdInDb
+              ? detail.genres?.map((el) => el.name).join(", ")
+              : detail.genres?.map((el) => el).join(", ")}
           </div>
           <div>
             <h2>Description:</h2>
-            <p>{vgame.description_raw}</p>
+            <p>{detail.description}</p>
           </div>
           <div>
             <h5>Released:</h5>
-            {vgame.released}
+            {detail.released}
           </div>
           <div>
             <h5>Rating: </h5>
-            {vgame.rating}
+            {detail.rating}
           </div>
           <div>
-            <h5>Platforms:</h5>
-            {vgame.platforms?.map((e) => (
-              <h5 key={e}>{e}</h5>
-            ))}
+            <h3>Platforms: </h3>
+            {detail.platforms?.map((p) => {
+              return <h3 key={p}>{p}</h3>;
+            })}
           </div>
         </div>
       ) : (
