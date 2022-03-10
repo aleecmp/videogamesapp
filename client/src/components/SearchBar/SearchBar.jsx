@@ -42,7 +42,7 @@ const SearchBar = () => {
             onChange={handleInputChange}
             placeholder="Search for a Vgame"
           />
-          {!name ? <button disabled>Create</button> : <button>Create</button>}
+          {!name ? <button disabled>Search</button> : <button>Search</button>}
         </div>
       )}
     </form>
