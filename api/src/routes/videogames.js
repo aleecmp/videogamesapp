@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const { Videogame, Genre } = require("../db.js");
 const {
+  getDbInfo,
+  getApiInfo,
   getAllVgames,
   getVgamesApiByName,
   getVgameById,
