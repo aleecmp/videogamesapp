@@ -166,7 +166,7 @@ const CreateVgame = () => {
           <div>
             <label>Rating: </label>
             <input
-              type="number"
+              type="decimal"
               value={input.rating}
               name="rating"
               placeholder="0-5"
@@ -197,9 +197,9 @@ const CreateVgame = () => {
               }}
             >
               <option> select </option>
-              {genres?.map((e, i) => {
+              {genres.map((e, i) => {
                 return (
-                  <option key={i} value={e.name}>
+                  <option key={i} name={e.name} value={e.name}>
                     {e.name}
                   </option>
                 );
