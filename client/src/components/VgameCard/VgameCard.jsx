@@ -2,24 +2,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./VgameCard.module.css";
 
-const VgameCard = (props) => {
-  console.log(props.name);
-  console.log(props.id);
-  console.log(props.ratings);
+const VgameCard = ({ name, image, genres, id, rating }) => {
+  if (typeof genres[0] !== "string") {
+    genres = genres.map((g) => g.name);
+  }
 
   return (
     <div>
-      <Link to={`videogame/${props.id}`}>
+      <Link to={`videogame/${id}`}>
         <div>
-          <h1>{props.name.toUpperCase()}</h1>
+          <h1>{name.toUpperCase()}</h1>
         </div>
         <div>
-          <img className={styles.image} src={props.image} alt={props.name} />
+          <img className={styles.image} src={image} alt={name} />
         </div>
         <div>
-          {props.genres?.map((e) => (
-            <h5 key={e}>{e}</h5>
-          ))}
+          {genres?.map((e) => {
+            return <h4 key={e}>{e}</h4>;
+          })}
         </div>
       </Link>
     </div>
