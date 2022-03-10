@@ -52,8 +52,14 @@ const Home = () => {
       />
       {currentVgames.length > 0 ? (
         <div className={styles.cards}>
-          {currentVgames.map((vgame) => (
-            <VgameCard key={vgame.id} {...vgame} />
+          {currentVgames.map((e) => (
+            <VgameCard
+              key={e.id}
+              name={e.name}
+              image={e.image}
+              genres={e.genres}
+              id={e.id}
+            />
           ))}
         </div>
       ) : (
