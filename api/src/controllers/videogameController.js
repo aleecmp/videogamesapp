@@ -79,7 +79,7 @@ const getVgamesApiByName = async (name) => {
         genres: e.genres.map((g) => g.name),
         platforms: e.platforms.map((p) => p.platform.name),
         rating: e.rating,
-        description_raw: e.description_raw,
+        description: e.description_raw,
         released: e.released,
       };
     });
@@ -117,7 +117,7 @@ const getVgameById = async (id) => {
         genres: detailsApi.genres.map((e) => e.name),
         platforms: detailsApi.platforms.map((e) => e.platform.name),
         rating: detailsApi.rating,
-        description_raw: detailsApi.description_raw,
+        description: detailsApi.description_raw,
         released: detailsApi.released,
       };
       return detailsObj;
@@ -142,30 +142,34 @@ const postVgameDb = async (vgameData) => {
       createdInDb,
     } = vgameData;
 
-    let vgameCreated = await Videogame.create({
-      name,
-      description,
-      released,
-      rating,
-      image,
-      platforms,
-      createdInDb,
-    });
+    if (name && description && platforms) {
+      let vgameCreated = await Videogame.create({
+        name,
+        description,
+        released,
+        rating,
+        image,
+        platforms,
+        createdInDb,
+      });
 
-    let genreDb = await Genre.findAll({
-      where: {
-        name: genres,
-      },
-    });
+      let genresDb = await Genre.findAll({
+        where: {
+          name: genres,
+        },
+      });
+      await vgameCreated.addGenres(genresDb);
 
-    vgameCreated.addGenre(genreDb);
-    return vgameCreated;
+      return vgameCreated;
+    }
   } catch (error) {
     console.log(error);
   }
 };
 
 module.exports = {
+  getDbInfo,
+  getApiInfo,
   getAllVgames,
   getVgamesApiByName,
   getVgameById,
