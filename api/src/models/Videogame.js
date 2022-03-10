@@ -23,9 +23,11 @@ module.exports = (sequelize) => {
       },
       released: {
         type: DataTypes.STRING,
+        allowNull: true,
       },
       rating: {
         type: DataTypes.DECIMAL,
+        allowNull: true,
       },
       platforms: {
         type: DataTypes.ARRAY(DataTypes.STRING),
