@@ -17,6 +17,7 @@ const Paginated = ({
     <nav className={styles.container}>
       <ul className={styles.paginated}>
         <button
+          className={styles.button}
           onClick={() =>
             setCurrentPage(currentPage === 1 ? currentPage : currentPage - 1)
           }
@@ -34,6 +35,7 @@ const Paginated = ({
           </button>
         ))}
         <button
+          className={styles.button}
           onClick={() =>
             setCurrentPage(
               currentPage === allVgames ? currentPage : currentPage + 1

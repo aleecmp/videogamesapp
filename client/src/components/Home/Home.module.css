@@ -1,5 +1,18 @@
+.home {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: #d0c9d6;
+}
+
 .cards {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+  backdrop-filter: blur(3.5px);
+}
+
+.loading {
+  display: flex;
   justify-content: center;
+  align-items: center;
 }

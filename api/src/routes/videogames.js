@@ -28,7 +28,9 @@ router.get("/", async (req, res) => {
       res.status(200).send(totalGamesName.slice(0, 15));
     } else {
       const vgames = await getAllVgames();
-      res.status(200).send(vgames);
+      vgames.length
+        ? res.status(200).send(vgames)
+        : res.status(404).send("Videogame not found");
     }
   } catch (error) {
     console.log(error);

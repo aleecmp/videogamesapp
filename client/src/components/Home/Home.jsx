@@ -40,9 +40,13 @@ const Home = () => {
   }, [currentPage]);
 
   return (
-    <div>
-      <NavBar />
-      <SideBar />
+    <div className={styles.home}>
+      <div className={styles.navbar}>
+        <NavBar />
+      </div>
+      <div className={styles.sidebar}>
+        <SideBar />
+      </div>
       <Paginated
         vgamesPerPage={vgamesPerPage}
         allVgames={allVgames.length}
@@ -63,16 +67,10 @@ const Home = () => {
           ))}
         </div>
       ) : (
-        <Loading />
+        <div className={styles.loading}>
+          <Loading />
+        </div>
       )}
-
-      <Paginated
-        vgamesPerPage={vgamesPerPage}
-        allVgames={allVgames.length}
-        paginated={paginated}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      />
     </div>
   );
 };

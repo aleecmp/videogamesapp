@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { orderByName } from "../../redux/actions";
 import { orderByRating } from "../../redux/actions";
 
-const OrderAlph = () => {
+const OrderBy = () => {
   const [order, setOrder] = useState("");
 
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const OrderAlph = () => {
   return (
     <div>
       <select onChange={(e) => handleSelect(e)}>
-        <option value="reset">Sort By</option>
+        <option value="reset">Order By</option>
         <optgroup label="Name">
           <option value="Asc-name">A-Z</option>
           <option value="Desc-name">Z-A</option>
@@ -35,4 +35,4 @@ const OrderAlph = () => {
   );
 };
 
-export default OrderAlph;
+export default OrderBy;

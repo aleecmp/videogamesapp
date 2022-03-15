@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import GenresFilter from "../Filters/GenresFilter";
-import OriginFilter from "../Filters/OriginFilter";
+import FilterBy from "../FilterBy/FilterBy";
 import OrderBy from "../OrderBy/OrderBy";
 import Loading from "../Loading/Loading";
 import { getAllVgames } from "../../redux/actions";
@@ -27,14 +26,13 @@ const SideBar = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="sidebar">
-          <div className="sidebar__filter">
-            <h3>Filters</h3>
-            <GenresFilter />
-            <OriginFilter />
-
+        <div>
+          <div className={styles.filterorder}>
+            <FilterBy />
             <OrderBy />
-            <button onClick={handleClick}>Clean</button>
+            <button className={styles.button} onClick={handleClick}>
+              Clean
+            </button>
           </div>
         </div>
       )}

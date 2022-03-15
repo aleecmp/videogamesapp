@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getGenres, postVgame } from "../../redux/actions";
+import styles from "./CreateVgame.module.css";
 
 const validate = (input) => {
   let errors = {};
@@ -112,10 +113,10 @@ const CreateVgame = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={styles.container}>
       <nav>
         <Link to="/home">
-          <button>Back</button>
+          <button className={styles.button}>Back</button>
         </Link>
         <h3>Create Vgame</h3>
         <p>Fields with * are required</p>
@@ -182,12 +183,12 @@ const CreateVgame = () => {
             <input
               type="text"
               value={input.image}
-              name="Image"
+              name="image"
               placeholder="http://..."
               onChange={(e) => {
                 handleChange(e);
               }}
-            ></input>
+            />
           </div>
           <div>
             <label>Genres: </label>
@@ -235,9 +236,11 @@ const CreateVgame = () => {
             {errors.name ||
             input.platforms.length === 0 ||
             errors.description ? (
-              <button disabled>Create</button>
+              <button className={styles.button} disabled>
+                Create
+              </button>
             ) : (
-              <button>Create</button>
+              <button className={styles.button}>Create</button>
             )}
           </div>
         </form>

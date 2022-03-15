@@ -8,17 +8,21 @@ const VgameCard = ({ name, image, genres, id, rating }) => {
   }
 
   return (
-    <div>
-      <Link to={`videogame/${id}`}>
+    <div className={styles.container}>
+      <Link className={styles.link} to={`videogame/${id}`}>
         <div>
-          <h1>{name.toUpperCase()}</h1>
+          <h1 className={styles.name}>{name.toUpperCase()}</h1>
         </div>
         <div>
           <img className={styles.image} src={image} alt={name} />
         </div>
-        <div>
+        <div className={styles.genres}>
           {genres?.map((e) => {
-            return <h4 key={e}>{e}</h4>;
+            return (
+              <h4 className={styles.subgenres} key={e}>
+                {e}
+              </h4>
+            );
           })}
         </div>
       </Link>

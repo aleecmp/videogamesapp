@@ -78,9 +78,11 @@ const rootReducer = (state = initialState, action) => {
 
     case ORDER_BY_NAME:
       let orderedVideogames = state.vgames.sort((a, b) => {
-        if (a.name < b.name) return action.payload === "Asc-name" ? -1 : 1;
+        if (a.name.toLowerCase() < b.name.toLowerCase())
+          return action.payload === "Asc-name" ? -1 : 1;
 
-        if (a.name > b.name) return action.payload === "Asc-name" ? 1 : -1;
+        if (a.name.toLowerCase() > b.name.toLowerCase())
+          return action.payload === "Asc-name" ? 1 : -1;
         return 0;
       });
       return {

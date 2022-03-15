@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getVgameByName } from "../../redux/actions";
 import Loading from "../Loading/Loading";
+import styles from "./SearchBar.module.css";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const SearchBar = () => {
 
   return (
     <form
+      className={styles.container}
       onSubmit={(e) => {
         handleSubmit(e);
       }}
@@ -37,12 +39,19 @@ const SearchBar = () => {
       ) : (
         <div>
           <input
+            className={styles.input}
             type="text"
             value={name}
             onChange={handleInputChange}
-            placeholder="Search for a Vgame"
+            placeholder="Search videogame..."
           />
-          {!name ? <button disabled>Search</button> : <button>Search</button>}
+          {!name ? (
+            <button className={styles.button} disabled>
+              Search
+            </button>
+          ) : (
+            <button className={styles.button}>Search</button>
+          )}
         </div>
       )}
     </form>
