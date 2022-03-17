@@ -92,6 +92,13 @@ const Home = () => {
           )}
         </div>
       )}
+      <Paginated
+        vgamesPerPage={vgamesPerPage}
+        allVgames={allVgames.length}
+        paginated={paginated}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </div>
   );
 };
