@@ -14,13 +14,11 @@ const Home = () => {
   const allVgames = useSelector((state) => state.vgames);
   const [loading, setLoading] = useState(true);
 
-  // paginated
+  // paginado
   const [currentPage, setCurrentPage] = useState(1);
   const [vgamesPerPage] = useState(15);
   const indexOfLastVgame = currentPage * vgamesPerPage;
   const indexOfFirstVgame = indexOfLastVgame - vgamesPerPage;
-
-  // cut array of vgames to show on current page
   const currentVgames = allVgames.slice(indexOfFirstVgame, indexOfLastVgame);
 
   const paginated = (pageNumber) => {

@@ -65,6 +65,7 @@ const rootReducer = (state = initialState, action) => {
         action.payload === "Created"
           ? state.allVgames.filter((e) => e.createdInDb)
           : state.allVgames.filter((e) => !e.createdInDb);
+
       return {
         ...state,
         vgames: action.payload === "All" ? state.allVgames : vgamesFiltered,
