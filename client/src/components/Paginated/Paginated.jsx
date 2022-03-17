@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Paginated.module.css";
 
 const Paginated = ({
@@ -13,6 +13,11 @@ const Paginated = ({
   for (let i = 0; i < Math.ceil(allVgames / vgamesPerPage); i++) {
     pageNumbers.push(i + 1);
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
   return (
     <nav className={styles.container}>
       <ul className={styles.paginated}>
@@ -27,7 +32,11 @@ const Paginated = ({
         </button>
         {pageNumbers?.map((number) => (
           <button
-            className={styles.button}
+            className={
+              currentPage === number
+                ? styles.button && styles.active
+                : styles.button
+            }
             key={number}
             onClick={() => paginated(number)}
           >
@@ -41,6 +50,7 @@ const Paginated = ({
               currentPage === allVgames ? currentPage : currentPage + 1
             )
           }
+          disabled={currentPage + 1 > pageNumbers.length}
         >
           {" "}
           &#62;{" "}
