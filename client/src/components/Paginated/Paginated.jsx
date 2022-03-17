@@ -10,10 +10,11 @@ const Paginated = ({
 }) => {
   const pageNumbers = [];
 
+  // guarda los nummeros de paginas en un array
   for (let i = 0; i < Math.ceil(allVgames / vgamesPerPage); i++) {
     pageNumbers.push(i + 1);
   }
-
+  // lleva al inicio de la pagina
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
@@ -23,6 +24,7 @@ const Paginated = ({
       <ul className={styles.paginated}>
         <button
           className={styles.button}
+          // si el numero de pagina es igual a 1 no se puede retroceder
           onClick={() =>
             setCurrentPage(currentPage === 1 ? currentPage : currentPage - 1)
           }
@@ -45,12 +47,12 @@ const Paginated = ({
         ))}
         <button
           className={styles.button}
+          // si el numero de pagina es igual al numero de paginas no se puede avanzar
           onClick={() =>
             setCurrentPage(
-              currentPage === allVgames ? currentPage : currentPage + 1
+              currentPage === pageNumbers.length ? currentPage : currentPage + 1
             )
           }
-          disabled={currentPage + 1 > pageNumbers.length}
         >
           {" "}
           &#62;{" "}
