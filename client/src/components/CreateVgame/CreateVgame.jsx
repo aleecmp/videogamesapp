@@ -52,10 +52,12 @@ const CreateVgame = () => {
   };
 
   const handleSelect = (e) => {
-    setInput({
-      ...input,
-      genres: [...input.genres, e.target.value],
-    });
+    if (!input.genres.includes(e.target.value)) {
+      setInput({
+        ...input,
+        genres: [...input.genres, e.target.value],
+      });
+    }
     console.log(input);
   };
 
