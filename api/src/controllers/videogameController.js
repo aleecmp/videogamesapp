@@ -142,26 +142,25 @@ const postVgameDb = async (vgameData) => {
       createdInDb,
     } = vgameData;
 
-    if (name && description && platforms) {
-      let vgameCreated = await Videogame.create({
-        name,
-        description,
-        released,
-        rating,
-        image,
-        platforms,
-        createdInDb,
-      });
+    // if (name && description && platforms) {
+    let vgameCreated = await Videogame.create({
+      name,
+      description,
+      released,
+      rating,
+      image,
+      platforms,
+      createdInDb,
+    });
 
-      let genresDb = await Genre.findAll({
-        where: {
-          name: genres,
-        },
-      });
-      await vgameCreated.addGenres(genresDb);
+    let genresDb = await Genre.findAll({
+      where: {
+        name: genres,
+      },
+    });
+    await vgameCreated.addGenres(genresDb);
 
-      return vgameCreated;
-    }
+    return vgameCreated;
   } catch (error) {
     console.log(error);
   }
