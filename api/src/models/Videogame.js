@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
       rating: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.FLOAT,
         allowNull: true,
       },
       platforms: {
@@ -36,7 +36,7 @@ module.exports = (sequelize) => {
       image: {
         type: DataTypes.STRING,
         defaultValue:
-          "https://icons-for-free.com/iconfiles/png/512/games+play+videogame+icon-1320195806786533824.png",
+          "https://ejemplocodigo.com/wp-content/themes/qaengine/img/default-thumbnail.jpg",
       },
       createdInDb: {
         type: DataTypes.BOOLEAN,
