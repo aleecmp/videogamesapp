@@ -1,7 +1,7 @@
 .home {
   display: flex;
   flex-flow: column nowrap;
-  background-color: #d0c9d6;
+  background-color: #85c3f0;
 }
 
 .cards {
@@ -15,4 +15,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.containerbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button {
+  font-size: 20px;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background-color: #f7ba12;
+  outline: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #c8466b;
 }

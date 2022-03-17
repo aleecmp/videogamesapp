@@ -29,7 +29,7 @@ const SearchBar = () => {
 
   return (
     <form
-      className={styles.container}
+      className={styles.form}
       onSubmit={(e) => {
         handleSubmit(e);
       }}

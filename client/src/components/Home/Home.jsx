@@ -1,23 +1,22 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cleanVgames, getAllVgames } from "../../redux/actions";
-
+import { getAllVgames } from "../../redux/actions";
 import NavBar from "../NavBar/NavBar";
 import Paginated from "../Paginated/Paginated";
 import VgameCard from "../VgameCard/VgameCard";
 import Loading from "../Loading/Loading";
 import SideBar from "../SideBar/SideBar";
-
 import styles from "./Home.module.css";
 
 const Home = () => {
   const dispatch = useDispatch();
   const allVgames = useSelector((state) => state.vgames);
+  const [loading, setLoading] = useState(true);
 
   // paginated
   const [currentPage, setCurrentPage] = useState(1);
-  const [vgamesPerPage, setVgamesPerPage] = useState(15);
+  const [vgamesPerPage] = useState(15);
   const indexOfLastVgame = currentPage * vgamesPerPage;
   const indexOfFirstVgame = indexOfLastVgame - vgamesPerPage;
 
@@ -29,11 +28,19 @@ const Home = () => {
   };
 
   useEffect(() => {
+    setLoading(true);
     dispatch(getAllVgames());
   }, [dispatch]);
 
-  //   return () => dispatch(cleanVgames());
-  // }, [dispatch]);
+  useEffect(() => {
+    if (allVgames.length) setLoading(false);
+  }, [allVgames]);
+
+  function handleClick(e) {
+    e.preventDefault();
+    dispatch(getAllVgames());
+    setCurrentPage(1);
+  }
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -47,6 +54,11 @@ const Home = () => {
       <div className={styles.sidebar}>
         <SideBar />
       </div>
+      <div className={styles.containerbtn}>
+        <button className={styles.button} onClick={(e) => handleClick(e)}>
+          Refresh
+        </button>
+      </div>
       <Paginated
         vgamesPerPage={vgamesPerPage}
         allVgames={allVgames.length}
@@ -54,21 +66,30 @@ const Home = () => {
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
       />
-      {currentVgames.length > 0 ? (
-        <div className={styles.cards}>
-          {currentVgames.map((e) => (
-            <VgameCard
-              key={e.id}
-              name={e.name}
-              image={e.image}
-              genres={e.genres}
-              id={e.id}
-            />
-          ))}
-        </div>
-      ) : (
+      {loading ? (
         <div className={styles.loading}>
           <Loading />
+        </div>
+      ) : (
+        <div>
+          {currentVgames.length > 0 ? (
+            <div className={styles.cards}>
+              {currentVgames.map((e) => (
+                <VgameCard
+                  key={e.id}
+                  name={e.name}
+                  image={e.image}
+                  genres={e.genres}
+                  id={e.id}
+                />
+              ))}
+            </div>
+          ) : (
+            <div>
+              <h1>ERROR 404</h1>
+              <h2>No games found</h2>
+            </div>
+          )}
         </div>
       )}
     </div>

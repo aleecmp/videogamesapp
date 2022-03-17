@@ -5,10 +5,11 @@
   border-radius: 5px;
   border: none;
   color: white;
-  background-color: #a7718c;
+  background-color: #f7ba12;
   outline: none;
   cursor: pointer;
   padding: 0;
+  margin: 15px;
 }
 
 .container {

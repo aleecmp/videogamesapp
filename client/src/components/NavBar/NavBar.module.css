@@ -3,6 +3,7 @@
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
+  background-color: #331ba3;
 }
 
 .button {
@@ -13,17 +14,22 @@
   border: none;
   font-size: 30px;
   font-style: normal;
+  font-weight: bold;
   font-weight: 600;
-  color: #76314f;
+  color: #f7ba12;
   cursor: pointer;
+  justify-content: center;
+  align-items: center;
 }
 
 .searchbar {
   display: flex;
   flex: 1 1 auto;
-  height: 50px;
+  height: 30px;
 }
 
 .link {
+  display: flex;
+  flex: 1 1 auto;
   text-decoration: none;
 }

@@ -12,8 +12,8 @@ const validate = (input) => {
     errors.description = "Description cannot be empty";
   } else if (input.platforms.length < 1) {
     errors.platforms = "Platforms cannot be empty";
-  } else if (input.rating > 5 || input.rating < 0) {
-    errors.rating = "Rating must be between 0 and 5";
+  } else if (input.rating < 1 || input.rating > 5) {
+    errors.rating = "Rating must be a number between 1 and 5";
   }
   return errors;
 };
@@ -94,18 +94,22 @@ const CreateVgame = () => {
         [e.target.name]: e.target.value,
       })
     );
-    dispatch(postVgame(input));
-    alert("Vgame Created Successfully");
-    history.push("/home");
-    setInput({
-      name: "",
-      description: "",
-      image: "",
-      released: "",
-      rating: "",
-      genres: [],
-      platforms: [],
-    });
+    if (Object.keys(errors).length === 0) {
+      dispatch(postVgame(input));
+      alert("Videogame created successfully");
+      setInput({
+        name: "",
+        description: "",
+        image: "",
+        released: "",
+        rating: "",
+        genres: [],
+        platforms: [],
+      });
+      history.push("/home");
+    } else {
+      alert("Videogame cannot be created");
+    }
   };
 
   useEffect(() => {
@@ -167,16 +171,17 @@ const CreateVgame = () => {
           <div>
             <label>Rating: </label>
             <input
-              type="decimal"
+              type="number"
               value={input.rating}
               name="rating"
               placeholder="0-5"
-              min={0}
-              max={5}
+              defaultValue={1}
               onChange={(e) => {
                 handleChange(e);
               }}
             />
+
+            {errors.rating && <p>{errors.rating}</p>}
           </div>
           <div>
             <label>Image: </label>
@@ -184,7 +189,7 @@ const CreateVgame = () => {
               type="text"
               value={input.image}
               name="image"
-              placeholder="http://..."
+              placeholder="insert Url ..."
               onChange={(e) => {
                 handleChange(e);
               }}
@@ -206,7 +211,6 @@ const CreateVgame = () => {
                 );
               })}
             </select>
-            {errors.genres && <p>{errors.genres}</p>}
           </div>
           <div>
             <label>Platforms:* </label>

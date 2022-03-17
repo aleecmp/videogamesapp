@@ -1,6 +1,7 @@
-.container {
+.form {
   display: flex;
   justify-content: center;
+  margin: 10px 0 10px 0;
 }
 
 .input {
@@ -22,7 +23,7 @@
   border-radius: 5px;
   border: none;
   color: white;
-  background-color: #a7718c;
+  background-color: #f7ba12;
   outline: none;
   cursor: pointer;
 }
