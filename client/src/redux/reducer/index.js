@@ -4,7 +4,6 @@ import {
   GET_DETAILS,
   GET_GENRES,
   CLEAN_DETAILS,
-  CLEAN_VGAMES,
   FILTER_VGAME_BY_GENRE,
   FILTER_BY_ORIGIN,
   ORDER_BY_NAME,
@@ -46,11 +45,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         details: action.payload,
-      };
-    case CLEAN_VGAMES:
-      return {
-        ...state,
-        allVgames: action.payload,
       };
 
     case FILTER_VGAME_BY_GENRE:

@@ -4,7 +4,6 @@ export const GET_ALL_VGAMES = "GET_ALL_VGAMES";
 export const GET_VGAME_BY_NAME = "GET_VGAME_BY_NAME";
 export const GET_DETAILS = "GET_DETAILS";
 export const CLEAN_DETAILS = "CLEAN_DETAILS";
-export const CLEAN_VGAMES = "CLEAN_VGAMES";
 export const GET_GENRES = "GET_GENRES";
 export const POST_VGAME = "POST_VGAME";
 export const FILTER_VGAME_BY_GENRE = "FILTER_VGAME_BY_GENRE";
@@ -59,13 +58,6 @@ export const getDetails = (id) => {
 export const cleanDetails = () => {
   return {
     type: CLEAN_DETAILS,
-    payload: [],
-  };
-};
-
-export const cleanVgames = () => {
-  return {
-    type: CLEAN_VGAMES,
     payload: [],
   };
 };
