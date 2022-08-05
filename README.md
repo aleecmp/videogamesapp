@@ -6,8 +6,8 @@ This application was created to pass the HENRY bootcamp individual project, it w
 
 The purpose of this app is to provide users with information about videogames (fetched from the external API [rawg](https://rawg.io/apidocs), as well as allow them to:
 
-- Search for videogames,
-- filter and sort them using different criteria, and
+- Search for videogames
+- filter and sort them using different criteria
 - create fictitious videogames with their respective genres and platforms.
 
 These are the technologies and languages I used to make this app come to life:
@@ -31,7 +31,7 @@ These are the technologies and languages I used to make this app come to life:
 
 **IMPORTANT:** In order to run this project locally, you'll need the latest stable version of Node and NPM. Please make sure you do before installing the dependencies.
 
-By the time I finished it (August, 2021), I was using these versions:
+By the time I finished it, I was using these versions:
 
 - **Node**: 12.18.3
 - **NPM**: 6.14.16
