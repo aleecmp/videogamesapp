@@ -1,6 +1,6 @@
 # Individual Project - Henry Videogames App
 
-This application was created to pass the HENRY bootcamp individual project, it was my first application and I know it still has a lot of room for improvement, however it works very well. At the end of the readme I will leave the following updates that I want to make to the project.
+This application was created to pass the HENRY bootcamp individual project. At the end of the readme I will leave the following updates that I want to make to the project.
 
 ## About this project:
 
