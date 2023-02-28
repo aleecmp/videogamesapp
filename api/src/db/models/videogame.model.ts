@@ -1,10 +1,15 @@
-const { DataTypes } = require("sequelize");
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
-module.exports = (sequelize) => {
-  // defino el modelo
-  sequelize.define(
-    "videogame",
+import { DataTypes, Sequelize } from 'sequelize';
+import {
+  IVideogameCreationAttributes,
+  IVideogamesInstance,
+} from '../../types';
+
+export default function initVideogameModel(sequelize: Sequelize) {
+  return sequelize.define<
+    IVideogamesInstance,
+    IVideogameCreationAttributes
+  >(
+    'Videogame',
     {
       id: {
         type: DataTypes.UUID,
@@ -36,7 +41,7 @@ module.exports = (sequelize) => {
       image: {
         type: DataTypes.STRING,
         defaultValue:
-          "https://ejemplocodigo.com/wp-content/themes/qaengine/img/default-thumbnail.jpg",
+          'https://ejemplocodigo.com/wp-content/themes/qaengine/img/default-thumbnail.jpg',
       },
       createdInDb: {
         type: DataTypes.BOOLEAN,
@@ -48,4 +53,4 @@ module.exports = (sequelize) => {
       timestamps: false,
     }
   );
-};
+}
